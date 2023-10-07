@@ -1,10 +1,10 @@
-
-import mysql from 'mysql2';
-import express from 'express'
 import dotenv from 'dotenv';
+import express from 'express'
+import mysql from 'mysql2';
 
 dotenv.config();
-var nodeEnv = process.env.NODE_ENV;
+
+//var nodeEnv = process.env.NODE_ENV;
 
 var app = express();
 // Set up connection to database.
