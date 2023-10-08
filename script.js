@@ -1,3 +1,4 @@
+import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express'
 import mysql from 'mysql2';
@@ -19,6 +20,7 @@ connection.connect((err) => {
   console.log('Connected as ID ' + connection.threadId);
 });
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
