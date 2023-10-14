@@ -2,6 +2,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express'
 import mysql from 'mysql2';
+//import http from 'http';
+import getClientIp from "get-client-ip";
 
 dotenv.config();
 
@@ -57,4 +59,10 @@ app.get('/contacts', (req, res) => {
 
 app.listen(3000, function() {
   console.log('Listening on port 3000!');
+});
+
+//Retrieve ip
+app.get("/", (req, res) => {
+  const ip = getClientIp(req);
+  res.send(ip);
 });
