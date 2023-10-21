@@ -2,8 +2,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express'
 import mysql from 'mysql2';
-//import http from 'http';
 import getClientIp from "get-client-ip";
+import heroip, {lookup} from "heroip";
 
 dotenv.config();
 
@@ -14,6 +14,8 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(heroip); // Use heroip middleware for IP info
+
 
 // Set up connection to database.
 var connection = mysql.createConnection(process.env.DATABASE_URL);
@@ -66,3 +68,14 @@ app.get("/", (req, res) => {
   const ip = getClientIp(req);
   res.send(ip);
 });
+
+app.get("/", (req, res) => {
+  const { ipInfo } = req; // Access IP information from the request object
+  //res.json(ipInfo); // Respond with IP details as JSON
+  res.send(lookup(ipInfo));
+});
+
+const ipAddress = ""; // IP address to look up
+const ipDetails = lookup(ipAddress); // Use lookup function to get IP details
+
+//console.log(ipDetails); // Log the IP details
