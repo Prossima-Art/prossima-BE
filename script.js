@@ -12,8 +12,6 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(heroip); // Use heroip middleware for IP info
-
 
 // Set up connection to database.
 var connection = mysql.createConnection(process.env.DATABASE_URL);
