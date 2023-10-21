@@ -2,8 +2,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express'
 import mysql from 'mysql2';
-import getClientIp from "get-client-ip";
-import heroip, {lookup} from "heroip";
 
 dotenv.config();
 
@@ -62,20 +60,3 @@ app.get('/contacts', (req, res) => {
 app.listen(3000, function() {
   console.log('Listening on port 3000!');
 });
-
-//Retrieve ip
-app.get("/", (req, res) => {
-  const ip = getClientIp(req);
-  res.send(ip);
-});
-
-app.get("/", (req, res) => {
-  const { ipInfo } = req; // Access IP information from the request object
-  //res.json(ipInfo); // Respond with IP details as JSON
-  res.send(lookup(ipInfo));
-});
-
-const ipAddress = ""; // IP address to look up
-const ipDetails = lookup(ipAddress); // Use lookup function to get IP details
-
-//console.log(ipDetails); // Log the IP details
